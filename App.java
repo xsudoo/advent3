@@ -5,52 +5,65 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class App
 {
     public static void main( String[] args )
     {
-        int high =100;
-        String[] strings = new String[100];
+        int high =34;
+        String[] strings = new String[high];
         Arrays.fill(strings, "....................................................................................................");
-        List<Integer> singelpoints = new ArrayList<>();
-        HashSet<List<Integer>> points = new HashSet<>();
-       // List<List<Integer>> points = new ArrayList<>();
-        int iterator=1;
-        while (iterator<3) {
-        int nrString =97;
+        int[] singelpoints = new int[2];
+       // HashSet<int[]> points = new HashSet<int[]>();
+        List<int[]> points = new ArrayList<>();
+        int iteration =0;
+        while (iteration <2){
+        int nrString =high-2;
+        int doTablicy = nrString;
         int nrCharu=3;
         char replace = '|';
 
-            for (int j = nrString; j > 0; j--) {
-                if (j == 1) {
-                    replace = 'X';
+        for (int j = nrString; j > 0; j--) {
+            if (j == 1) {
+                replace = 'X';
+            }
+            String zmiana = strings[nrString];
+            StringBuilder nowy = new StringBuilder();
+            for (int i = 0; i < zmiana.length(); i++) {
+                if (i == nrCharu) {
+                    nowy.append(replace);
+                    singelpoints = new int[2];
+                    singelpoints[1] = j;
+                    singelpoints[0] = i;
+                    points.add(singelpoints);
+                } else
+                    nowy.append(".");
+                if (j == 1 && i == nrCharu) {
+
                 }
-                String zmiana = strings[nrString];
-                StringBuilder nowy = new StringBuilder();
-                for (int i = 0; i < zmiana.length(); i++) {
-                    if (i == nrCharu) {
-                        nowy.append(replace);
-                        singelpoints.add(j);
-                        singelpoints.add(nrCharu);
-                        points.add(singelpoints);
-                    } else
-                        nowy.append(".");
-                    if (j == 1 && i == nrCharu) {
-                    }
-                }
-                strings[nrString] = nowy.toString();
-                nrString--;
 
             }
-            /*for (int i = 0; i < strings.length; i++) {
-                //     System.out.println(strings[i]);
-            }*/
-            iterator++;
+            strings[nrString] = nowy.toString();
+            nrString--;
         }
-        System.out.println(points.size());
-        interpretacjaWejscia();
+        iteration++;
+            }//Rysowanie
+            for (int i = 0; i < strings.length; i++) {
+                System.out.println(strings[i]);
+            }
+        for (int [] t:points
+             ) {
+            System.out.println(t[0]+" "+t[1]);
+
+        }
+
+
+
+      //  interpretacjaWejscia();
+
+      //  test.sprawdz(nrCharu,doTablicy);
 
     }
     public static void interpretacjaWejscia (){
